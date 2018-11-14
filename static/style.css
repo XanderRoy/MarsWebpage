@@ -1,0 +1,11 @@
+
+.centerBlock {
+  display: table;
+  margin: auto;
+  margin-block-end: 5%;
+}
+
+.card {
+  width: 18rem;
+  padding: 5%
+}
