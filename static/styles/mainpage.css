@@ -1,0 +1,64 @@
+
+.centerBlock {
+  display: table;
+  margin: auto;
+  clear: both;
+}
+
+.card {
+  width: 33vw;
+  overflow: auto;
+  margin-bottom: 10vh;
+}
+
+#card-title{
+  margin-bottom: 5vh;
+  width: 15vw;
+}
+
+.card-img-top {
+  width: 33vw;
+ }
+.p {width: 80vw;
+margin-left: 10vw}
+
+#more {display: none;}
+ 
+
+.table {align-content: center}
+
+.heading {border: turquoise;
+    border-style: solid;
+    border-radius: 30px;
+    text-align: center;
+    width: 50rem;
+    margin: auto;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+  }
+
+#story_title {
+  width: 100rem;
+  
+}
+#weather-head {
+  width: 40rem;
+  margin-right: 10vw;
+}
+#story-block {
+  width: 80rem;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 10%;
+}
+
+.body {color: white;
+      background-color: black}
+
+
+
+
+.btn {
+  color: white;
+  background-color: rgb(167, 179, 11);
+  border-radius: 25px}}

@@ -5,71 +5,86 @@
     <title>Mars Travel Dashboard</title>
     <meta charset = "utf-8" name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="body">
     <div class="Container">
 
 
     
         <div class="row">
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
                 <div class="centerBlock">
-                    <h3>Todays Featured Image</h3>
-                    <img class=img src={{Img_url}} height=400px title="{{Img_Mouseover}}">
+                    <h1 class="heading">Todays Featured Image</h1>
+                    <img class=img src={{Img_url}} height=500px title="{{Img_Mouseover}}">
                 </div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 align-self-end ml-auto">
-                <h3>Today's Weather</h3>
-                <p>{{Weather}}</p>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 align-self-end ml-auto">
+      
 
-                <a href="/scrape" class="btn btn-primary">Refresh Feed</a>
+                <div class="row">
+                    <h3 class="heading" id="weather-head">Today's Weather</h3>
+                    <p>{{Weather}}</p>
+                </div>
+                <a href="/scrape" class="btn">Refresh Feed</a>
+              
+                
+                <div class="row">
+                    <h3 class="heading" id="weather-head">Facts</h3>
+                        {{facts | safe}} 
+                </div>
             </div>            
         </div>
 
-    
+   
 
         <div class="row">
-            <h2>{{Story_Title}}</h1>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1 class="heading" id="story_title">{{Story_Title}}</h1>
         </div>
-        <div class="row">
-            <P>{{Story_Teaser}}</P>
-    
+        <div class="row" id="story-block">
+            <P>{{Story_Teaser}}<span id="dots">...</span></P>
+            <button class="btn" onclick="readmore()" id="readmore">Read more</button>
+            <p id="more">{{Story}}</p>
         </div>
 
-        <!-- <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <div class="row">
-                    <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                            <h5 class="card-title">{{Hemisphere_Imgs[0]['Title']}}</h5>
-                            <img class="card-img-top" src="{{Hemisphere_Imgs[0]['url']}}" alt="Card image cap">
-
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-
-                        </div>
-                    </div>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <div clas="row">
-                    <div class="card" style="width: 18rem;">
+            {% for hemisphere in Hemisphere_Imgs%}
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="centerBlock">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{Hemisphere_Imgs[1]['Title']}}</h5>
-                            <img class="card-img-top" src="{{Hemisphere_Imgs[1]['url']}}" alt="Card image cap">                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h4 class="heading" id="card-title">{{hemisphere['Title']}}</h4>
+                            <img class="card-img-top" src="{{hemisphere['url']}}" alt="Card image cap" >                           
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-         -->
+            {%endfor%}
+            </div>
+
     </div>
 
 
-
-
 </body>
+<script>
+
+function readmore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("readmore");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+</script>
 </html>
 

@@ -61,9 +61,9 @@ def scrape():
 	html = browser.html
 	soup = BeautifulSoup(html, 'lxml-xml')
 
-	facts = pd.read_html(str(soup.find('table')), skiprows=0)[0]
+	facts = pd.read_html(str(soup.find('table')), skiprows=0, header=0)[0]
 	facts.columns=['Description','Values']
-	facts.set_index('Description')
+	facts.set_index('Description', drop=True)
 	facts = facts.to_html()
 
 
@@ -106,7 +106,7 @@ def scrape():
 	}
 
 	collection.insert_one(last_call)
-
+	browser.quit()
 
 
 
@@ -138,6 +138,7 @@ def index():
 @app.route("/scrape")
 def scraper():
 	scrape()
+	
 	return redirect("/")
 
 if __name__ == "__main__":
