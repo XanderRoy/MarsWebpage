@@ -112,7 +112,7 @@ def scrape():
 
 @app.route("/")
 def index():
-	recent_scrape = collection.find().sort('Time', 1)
+	recent_scrape = collection.find().sort('Time', -1)
 	for x in recent_scrape:
 		Time = x['Time']
 		Story_Title = x['Story_Title']
